@@ -18,7 +18,7 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
     private readonly EncriptadorDeSenha _encriptadorDeSenha;
     private readonly TokenController _tokenController;
 
-    public RegistrarUsuarioUseCase(IUsuarioWriteOnlyRepositorio repositorio, IMapper mapper, IUnidadeDeTrabalho unidadeDeTrabalho, 
+    public RegistrarUsuarioUseCase(IUsuarioWriteOnlyRepositorio repositorio, IMapper mapper, IUnidadeDeTrabalho unidadeDeTrabalho,
         EncriptadorDeSenha encriptadorDeSenha, TokenController tokenController, IUsuarioReadOnlyRepositorio usuarioReadOnlyRepositorio)
     {
         _repositorio = repositorio;
@@ -37,6 +37,7 @@ public class RegistrarUsuarioUseCase : IRegistrarUsuarioUseCase
         entidade.Senha = _encriptadorDeSenha.Criptografar(requisicao.Senha);
 
         await _repositorio.Adicionar(entidade);
+
         await _unidadeDeTrabalho.Commit();
 
         var token = _tokenController.GerarToken(entidade.Email);

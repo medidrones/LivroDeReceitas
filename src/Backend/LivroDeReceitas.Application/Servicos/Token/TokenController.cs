@@ -20,7 +20,7 @@ public class TokenController
     {
         var claims = new List<Claim>
         {
-            new Claim(EmailAlias, emailDoUsuario)
+            new Claim(EmailAlias, emailDoUsuario),
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -37,25 +37,34 @@ public class TokenController
         return tokenHandler.WriteToken(securityToken);
     }
 
-    public void ValidarToken(string token)
+    public ClaimsPrincipal ValidarToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
+
         var parametrosValidacao = new TokenValidationParameters
         {
             RequireExpirationTime = true,
             IssuerSigningKey = SimetricKey(),
             ClockSkew = new TimeSpan(0),
             ValidateIssuer = false,
-            ValidateAudience = false
+            ValidateAudience = false,
         };
 
-        tokenHandler.ValidateToken(token, parametrosValidacao, out _);
+        var claims = tokenHandler.ValidateToken(token, parametrosValidacao, out _);
+
+        return claims;
+    }
+
+    public string RecuperarEmail(string token)
+    {
+        var claims = ValidarToken(token);
+
+        return claims.FindFirst(EmailAlias).Value;
     }
 
     private SymmetricSecurityKey SimetricKey()
     {
-        var symetricKey = Convert.FromBase64String(_chaveDeSeguranca);
-
-        return new SymmetricSecurityKey(symetricKey);
+        var symmetricKey = Convert.FromBase64String(_chaveDeSeguranca);
+        return new SymmetricSecurityKey(symmetricKey);
     }
 }
