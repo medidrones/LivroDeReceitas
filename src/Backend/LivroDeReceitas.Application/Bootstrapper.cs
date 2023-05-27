@@ -11,22 +11,22 @@ public static class Bootstrapper
     public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         AdicionarChaveAdicionalSenha(services, configuration);
-        AdicionarTokenJwt(services, configuration);
+        AdicionarTokenJWT(services, configuration);
 
         services.AddScoped<IRegistrarUsuarioUseCase, RegistrarUsuarioUseCase>();
     }
 
     private static void AdicionarChaveAdicionalSenha(IServiceCollection services, IConfiguration configuration)
     {
-        var section = configuration.GetRequiredSection("Configuracoes:ChaveAdicionalSenha");
+        var section = configuration.GetRequiredSection("Configuracoes:Senha:ChaveAdicionalSenha");
 
         services.AddScoped(option => new EncriptadorDeSenha(section.Value));
     }
 
-    private static void AdicionarTokenJwt(IServiceCollection services, IConfiguration configuration)
+    private static void AdicionarTokenJWT(IServiceCollection services, IConfiguration configuration)
     {
-        var sectionTempoDeVida = configuration.GetRequiredSection("Configuracoes:TempoVidaToken");
-        var sectionKey = configuration.GetRequiredSection("Configuracoes:ChaveToken");
+        var sectionTempoDeVida = configuration.GetRequiredSection("Configuracoes:Jwt:TempoVidaTokenMinutos");
+        var sectionKey = configuration.GetRequiredSection("Configuracoes:Jwt:ChaveToken");
 
         services.AddScoped(option => new TokenController(int.Parse(sectionTempoDeVida.Value), sectionKey.Value));
     }
