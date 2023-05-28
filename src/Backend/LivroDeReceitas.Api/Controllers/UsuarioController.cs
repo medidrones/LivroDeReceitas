@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LivroDeReceitas.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class UsuarioController : ControllerBase
+    public class UsuarioController : LivroDeReceitasController
     {
         [HttpPost]
         [ProducesResponseType(typeof(RespostaUsuarioRegistradoJson), StatusCodes.Status201Created)]

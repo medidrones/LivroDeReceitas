@@ -29,7 +29,7 @@ public class FiltroDasExceptions : IExceptionFilter
         }
         else if (context.Exception is LoginInvalidoException)
         {
-            TratarErrosDeValidacaoException(context);
+            TratarLoginException(context);
         }
     }
 
@@ -41,7 +41,7 @@ public class FiltroDasExceptions : IExceptionFilter
         context.Result = new ObjectResult(new RespostaErroJson(erroDeValidacaoException.MensagensDeErro));
     }
 
-    private void TratarLoginException(ExceptionContext context)
+    private static void TratarLoginException(ExceptionContext context)
     {
         var erroLogin = context.Exception as LoginInvalidoException;
 
