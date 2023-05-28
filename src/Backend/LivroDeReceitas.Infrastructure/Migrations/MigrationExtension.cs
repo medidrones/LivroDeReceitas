@@ -6,7 +6,7 @@ namespace LivroDeReceitas.Infrastructure.Migrations;
 
 public static class MigrationExtension
 {
-    public static void MigreteBancoDeDados(this IApplicationBuilder app)
+    public static void MigrateBancoDeDados(this IApplicationBuilder app)
     {
         using var scope = app.ApplicationServices.CreateScope();
 
