@@ -2,4 +2,7 @@
 
 public class LivroDeReceitasException : SystemException
 {
+    public LivroDeReceitasException(string message) : base(message)
+    {
+    }
 }
