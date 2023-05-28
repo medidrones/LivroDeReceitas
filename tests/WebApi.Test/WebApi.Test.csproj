@@ -34,4 +34,8 @@
     <ProjectReference Include="..\Utilitario.Test\Utilitario.Test.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="V1\Login\" />
+  </ItemGroup>
+
 </Project>
