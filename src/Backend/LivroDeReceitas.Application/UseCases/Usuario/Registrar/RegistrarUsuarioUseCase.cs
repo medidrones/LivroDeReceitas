@@ -4,6 +4,7 @@ using LivroDeReceitas.Application.Servicos.Token;
 using LivroDeReceitas.Comunicacao.Requisicoes;
 using LivroDeReceitas.Comunicacao.Respostas;
 using LivroDeReceitas.Domain.Repositorios;
+using LivroDeReceitas.Domain.Repositorios.Usuario;
 using LivroDeReceitas.Exceptions;
 using LivroDeReceitas.Exceptions.ExceptionsBase;
 

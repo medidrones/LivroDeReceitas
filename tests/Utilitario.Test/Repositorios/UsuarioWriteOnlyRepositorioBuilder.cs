@@ -1,4 +1,4 @@
-﻿using LivroDeReceitas.Domain.Repositorios;
+﻿using LivroDeReceitas.Domain.Repositorios.Usuario;
 using Moq;
 
 namespace Utilitario.Test.Repositorios;
