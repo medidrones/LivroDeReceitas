@@ -34,7 +34,7 @@ public class AlterarSenhaUseCaseTest
     }
 
     [Fact]
-    public async Task Validar_Erro_NovaSenhaEmBranco()
+    public async Task Validar_Erro_NovaSenha_Em_Branco()
     {
         (var usuario, var senha) = UsuarioBuilder.Construir();
 

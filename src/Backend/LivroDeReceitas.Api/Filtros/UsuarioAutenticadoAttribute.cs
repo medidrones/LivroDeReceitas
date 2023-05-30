@@ -2,6 +2,7 @@
 using LivroDeReceitas.Comunicacao.Respostas;
 using LivroDeReceitas.Domain.Repositorios.Usuario;
 using LivroDeReceitas.Exceptions;
+using LivroDeReceitas.Exceptions.ExceptionsBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -30,7 +31,7 @@ public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizati
 
             if (usuario is null)
             {
-                throw new Exception();
+                throw new LivroDeReceitasException(string.Empty);
             }
         }
         catch (SecurityTokenExpiredException exception)
@@ -44,24 +45,24 @@ public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizati
         
     }
 
-    private string TokenNaRequisicao(AuthorizationFilterContext context)
+    private static string TokenNaRequisicao(AuthorizationFilterContext context)
     {
         var authorization = context.HttpContext.Request.Headers["Authorization"].ToString();
 
         if (string.IsNullOrWhiteSpace(authorization))
         {
-            throw new Exception();
+            throw new LivroDeReceitasException(string.Empty);
         }
 
         return authorization["Bearer".Length..].Trim();
     }
 
-    private void TokenExpirado(AuthorizationFilterContext context)
+    private static void TokenExpirado(AuthorizationFilterContext context)
     {
         context.Result = new UnauthorizedObjectResult(new RespostaErroJson(ResourceMensagensDeErro.TOKEN_EXPIRADO));
     }
 
-    private void UsuarioSemPermissao(AuthorizationFilterContext context)
+    private static void UsuarioSemPermissao(AuthorizationFilterContext context)
     {
         context.Result = new UnauthorizedObjectResult(new RespostaErroJson(ResourceMensagensDeErro.USUARIO_SEM_PERMISSAO));
     }
