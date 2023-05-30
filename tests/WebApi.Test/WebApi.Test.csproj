@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="V1\Login\" />
+    <Folder Include="V1\Usuario\AlterarSenha\" />
   </ItemGroup>
 
 </Project>

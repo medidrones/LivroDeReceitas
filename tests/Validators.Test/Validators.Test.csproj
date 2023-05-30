@@ -32,4 +32,8 @@
     <ProjectReference Include="..\Utilitario.Test\Utilitario.Test.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Usuario\AlterarSenha\" />
+  </ItemGroup>
+
 </Project>
