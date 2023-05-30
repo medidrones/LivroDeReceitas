@@ -24,6 +24,8 @@ builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
     cfg.AddProfile(new AutoMapperConfiguracao());
 }).CreateMapper());
 
+builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
