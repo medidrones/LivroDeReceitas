@@ -1,12 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
@@ -15,6 +16,10 @@
     <ProjectReference Include="..\..\Shared\LivroDeReceitas.Exceptions\LivroDeReceitas.Exceptions.csproj" />
     <ProjectReference Include="..\LivroDeReceitas.Application\LivroDeReceitas.Application.csproj" />
     <ProjectReference Include="..\LivroDeReceitas.Infrastructure\LivroDeReceitas.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\" />
   </ItemGroup>
 
 </Project>

@@ -1,15 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\LivroDeReceitas.Comunicacao\LivroDeReceitas.Comunicacao.csproj" />
     <ProjectReference Include="..\..\Shared\LivroDeReceitas.Exceptions\LivroDeReceitas.Exceptions.csproj" />
     <ProjectReference Include="..\LivroDeReceitas.Domain\LivroDeReceitas.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.20.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Servicos\UsuarioLogado\" />
+    <Folder Include="UseCases\Usuario\Login\FazerLogin\" />
+    <Folder Include="UseCases\Usuario\AlterarSenha\" />
   </ItemGroup>
 
 </Project>
