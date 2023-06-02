@@ -34,7 +34,7 @@ public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizati
                 throw new LivroDeReceitasException(string.Empty);
             }
         }
-        catch (SecurityTokenExpiredException exception)
+        catch (SecurityTokenExpiredException)
         {
             TokenExpirado(context);
         }
