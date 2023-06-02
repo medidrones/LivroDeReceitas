@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Entidades\" />
+    <Folder Include="Hashids\" />
     <Folder Include="UsuarioLogado\" />
   </ItemGroup>
 

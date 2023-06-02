@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AspNetCore.Hashids" Version="2.0.0" />
     <PackageReference Include="FluentValidation" Version="11.1.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
@@ -22,7 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Servicos\UsuarioLogado\" />
-    <Folder Include="UseCases\Usuario\Login\FazerLogin\" />
+    <Folder Include="UseCases\Receita\Registrar\" />
     <Folder Include="UseCases\Usuario\AlterarSenha\" />
   </ItemGroup>
 
