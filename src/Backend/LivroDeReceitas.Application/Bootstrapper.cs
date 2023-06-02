@@ -1,8 +1,9 @@
 ﻿using LivroDeReceitas.Application.Servicos.Criptografia;
 using LivroDeReceitas.Application.Servicos.Token;
 using LivroDeReceitas.Application.Servicos.UsuarioLogado;
+using LivroDeReceitas.Application.UseCases.Login.FazerLogin;
+using LivroDeReceitas.Application.UseCases.Receita.Registrar;
 using LivroDeReceitas.Application.UseCases.Usuario.AlterarSenha;
-using LivroDeReceitas.Application.UseCases.Usuario.Login.FazerLogin;
 using LivroDeReceitas.Application.UseCases.Usuario.Registrar;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ public static class Bootstrapper
     public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         AdicionarChaveAdicionalSenha(services, configuration);
+        AdicionarHashIds(services, configuration);
         AdicionarTokenJWT(services, configuration);
         AdicionarUseCase(services);
         AdicionarUsuarioLogado(services);
@@ -39,10 +41,22 @@ public static class Bootstrapper
         services.AddScoped(option => new TokenController(int.Parse(sectionTempoDeVida.Value), sectionKey.Value));
     }
 
+    private static void AdicionarHashIds(IServiceCollection services, IConfiguration configuration)
+    {
+        var salt = configuration.GetRequiredSection("Configuracoes:HashIds:Salt");
+
+        services.AddHashids(setup =>
+        {
+            setup.Salt = salt.Value;
+            setup.MinHashLength = 3;
+        });
+    }
+
     private static void AdicionarUseCase(IServiceCollection services)
     {
         services.AddScoped<IRegistrarUsuarioUseCase, RegistrarUsuarioUseCase>()
             .AddScoped<ILoginUseCase, LoginUseCase>()
-            .AddScoped<IAlterarSenhaUseCase, AlterarSenhaUseCase>();
+            .AddScoped<IAlterarSenhaUseCase, AlterarSenhaUseCase>()
+            .AddScoped<IRegistrarReceitaUseCase, RegistrarReceitaUseCase>();
     }
 }

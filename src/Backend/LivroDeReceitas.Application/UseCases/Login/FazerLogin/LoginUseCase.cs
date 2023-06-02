@@ -5,7 +5,7 @@ using LivroDeReceitas.Comunicacao.Respostas;
 using LivroDeReceitas.Domain.Repositorios.Usuario;
 using LivroDeReceitas.Exceptions.ExceptionsBase;
 
-namespace LivroDeReceitas.Application.UseCases.Usuario.Login.FazerLogin;
+namespace LivroDeReceitas.Application.UseCases.Login.FazerLogin;
 
 public class LoginUseCase : ILoginUseCase
 {

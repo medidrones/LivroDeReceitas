@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using LivroDeReceitas.Application.UseCases.Usuario.Login.FazerLogin;
+using LivroDeReceitas.Application.UseCases.Login.FazerLogin;
 using LivroDeReceitas.Comunicacao.Requisicoes;
 using LivroDeReceitas.Exceptions;
 using LivroDeReceitas.Exceptions.ExceptionsBase;

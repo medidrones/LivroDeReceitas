@@ -1,4 +1,4 @@
-﻿using LivroDeReceitas.Application.UseCases.Usuario.Login.FazerLogin;
+﻿using LivroDeReceitas.Application.UseCases.Login.FazerLogin;
 using LivroDeReceitas.Comunicacao.Requisicoes;
 using LivroDeReceitas.Comunicacao.Respostas;
 using Microsoft.AspNetCore.Mvc;
