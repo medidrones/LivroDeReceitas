@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Servicos\UsuarioLogado\" />
-    <Folder Include="UseCases\Receita\Registrar\" />
     <Folder Include="UseCases\Usuario\AlterarSenha\" />
   </ItemGroup>
 

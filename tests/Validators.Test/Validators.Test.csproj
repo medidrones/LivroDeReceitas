@@ -33,6 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Receita\Atualizar\" />
+    <Folder Include="Receita\Registrar\" />
     <Folder Include="Usuario\AlterarSenha\" />
   </ItemGroup>
 
