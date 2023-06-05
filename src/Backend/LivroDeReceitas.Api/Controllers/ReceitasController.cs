@@ -13,7 +13,7 @@ public class ReceitasController : LivroDeReceitasController
     [ProducesResponseType(typeof(RespostaReceitaJson), StatusCodes.Status201Created)]
     public async Task<IActionResult> Registrar(
         [FromServices] IRegistrarReceitaUseCase useCase,
-        [FromBody] RequisicaoRegistrarReceitaJson requisicao)
+        [FromBody] RequisicaoReceitaJson requisicao)
     {
         var resposta = await useCase.Executar(requisicao);
 
