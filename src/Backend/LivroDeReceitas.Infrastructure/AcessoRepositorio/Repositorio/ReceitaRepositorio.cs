@@ -24,4 +24,11 @@ public class ReceitaRepositorio : IReceitaWriteOnlyRepositorio, IReceitaReadOnly
             .Include(r => r.Ingredientes)
             .Where(r => r.UsuarioId == usuarioId).ToListAsync();
     }
+
+    public async Task<Receita> RecuperarPorId(long receitaId)
+    {
+        return await _contexto.Receitas.AsNoTracking()
+            .Include(r => r.Ingredientes)
+            .FirstOrDefaultAsync(r => r.Id == receitaId);
+    }
 }
