@@ -10,6 +10,7 @@ namespace WebApi.Test.V1.Usuario.Registrar;
 public class RegistrarUsuarioTest : ControllerBase
 {
     private const string METODO = "usuario";
+
     public RegistrarUsuarioTest(WebApiFactory<Program> factory) : base(factory)
     {
     }
