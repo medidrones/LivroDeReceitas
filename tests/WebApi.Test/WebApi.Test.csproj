@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="V1\Login\" />
+    <Folder Include="V1\Dashboard\" />
     <Folder Include="V1\Receita\Registrar\" />
     <Folder Include="V1\Usuario\AlterarSenha\" />
   </ItemGroup>
