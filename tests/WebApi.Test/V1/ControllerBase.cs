@@ -19,8 +19,10 @@ public class ControllerBase : IClassFixture<WebApiFactory<Program>>
         ResourceMensagensDeErro.Culture = CultureInfo.CurrentCulture;
     }
 
-    protected async Task<HttpResponseMessage> PostRequest(string metodo, object body)
+    protected async Task<HttpResponseMessage> PostRequest(string metodo, object body, string token = "")
     {
+        AutorizarRequisicao(token);
+
         var jsonString = JsonConvert.SerializeObject(body);
 
         return await _client.PostAsync(metodo, new StringContent(jsonString, Encoding.UTF8, "application/json"));
