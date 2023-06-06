@@ -3,6 +3,7 @@ using LivroDeReceitas.Application.Servicos.Token;
 using LivroDeReceitas.Application.Servicos.UsuarioLogado;
 using LivroDeReceitas.Application.UseCases.Dashboard;
 using LivroDeReceitas.Application.UseCases.Login.FazerLogin;
+using LivroDeReceitas.Application.UseCases.Receita.RecuperarPorId;
 using LivroDeReceitas.Application.UseCases.Receita.Registrar;
 using LivroDeReceitas.Application.UseCases.Usuario.AlterarSenha;
 using LivroDeReceitas.Application.UseCases.Usuario.Registrar;
@@ -59,6 +60,7 @@ public static class Bootstrapper
             .AddScoped<ILoginUseCase, LoginUseCase>()
             .AddScoped<IAlterarSenhaUseCase, AlterarSenhaUseCase>()
             .AddScoped<IRegistrarReceitaUseCase, RegistrarReceitaUseCase>()
-            .AddScoped<IDashboardUseCase, DashboardUseCase>();
+            .AddScoped<IDashboardUseCase, DashboardUseCase>()
+            .AddScoped<IRecuperarReceitaPorIdUseCase, RecuperarReceitaPorIdUseCase>();
     }
 }

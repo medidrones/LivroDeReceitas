@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Servicos\UsuarioLogado\" />
     <Folder Include="UseCases\Dashboard\" />
+    <Folder Include="UseCases\Receita\RecuperarPorId\" />
     <Folder Include="UseCases\Usuario\AlterarSenha\" />
   </ItemGroup>
 
