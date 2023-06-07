@@ -8,7 +8,7 @@ using Utilitario.Test.Repositorios;
 using Utilitario.Test.UsuarioLogado;
 using Xunit;
 
-namespace UseCases.Test.Receita.Dashboard;
+namespace UseCases.Test.Dashboard;
 
 public class DashboardUseCaseTest
 {
@@ -88,7 +88,7 @@ public class DashboardUseCaseTest
     private static DashboardUseCase CriarUseCase(
         LivroDeReceitas.Domain.Entidades.Usuario usuario,
         IList<LivroDeReceitas.Domain.Entidades.Usuario> usuariosConectados,
-        LivroDeReceitas.Domain.Entidades.Receita? receita = null)
+        LivroDeReceitas.Domain.Entidades.Receita receita = null)
     {
         var usuarioLogado = UsuarioLogadoBuilder.Instancia().RecuperarUsuario(usuario).Construir();
         var mapper = MapperBuilder.Instancia();
