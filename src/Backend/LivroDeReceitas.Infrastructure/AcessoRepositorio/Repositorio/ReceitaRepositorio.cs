@@ -13,9 +13,11 @@ public class ReceitaRepositorio : IReceitaWriteOnlyRepositorio, IReceitaReadOnly
         _contexto = contexto;
     }
 
-    public async Task Registrar(Receita receita)
+    async Task<Receita> IReceitaReadOnlyRepositorio.RecuperarPorId(long receitaId)
     {
-        await _contexto.Receitas.AddAsync(receita);
+        return await _contexto.Receitas.AsNoTracking()
+            .Include(r => r.Ingredientes)
+            .FirstOrDefaultAsync(r => r.Id == receitaId);
     }
 
     public async Task<IList<Receita>> RecuperarTodasDoUsuario(long usuarioId)
@@ -25,10 +27,8 @@ public class ReceitaRepositorio : IReceitaWriteOnlyRepositorio, IReceitaReadOnly
             .Where(r => r.UsuarioId == usuarioId).ToListAsync();
     }
 
-    public async Task<Receita> RecuperarPorId(long receitaId)
+    public async Task Registrar(Receita receita)
     {
-        return await _contexto.Receitas.AsNoTracking()
-            .Include(r => r.Ingredientes)
-            .FirstOrDefaultAsync(r => r.Id == receitaId);
+        await _contexto.Receitas.AddAsync(receita);
     }
 }

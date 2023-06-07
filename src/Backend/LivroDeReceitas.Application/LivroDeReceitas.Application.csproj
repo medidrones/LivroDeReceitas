@@ -19,13 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.20.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Servicos\UsuarioLogado\" />
-    <Folder Include="UseCases\Dashboard\" />
-    <Folder Include="UseCases\Receita\RecuperarPorId\" />
-    <Folder Include="UseCases\Usuario\AlterarSenha\" />
+    <PackageReference Include="QRCoder" Version="1.4.2" />
   </ItemGroup>
 
 </Project>

@@ -23,16 +23,19 @@ public class RecuperarReceitaPorIdUseCase : IRecuperarReceitaPorIdUseCase
     public async Task<RespostaReceitaJson> Executar(long id)
     {
         var usuarioLogado = await _usuarioLogado.RecuperarUsuario();
+
         var receita = await _repositorio.RecuperarPorId(id);
 
-        Validar(usuarioLogado, receita);
+        await Validar(usuarioLogado, receita);
 
         return _mapper.Map<RespostaReceitaJson>(receita);
     }
 
-    public static void Validar(Domain.Entidades.Usuario usuarioLogado, Domain.Entidades.Receita receita)
+    public async Task Validar(Domain.Entidades.Usuario usuarioLogado, Domain.Entidades.Receita receita)
     {
-        if (receita == null || receita.UsuarioId != usuarioLogado.Id)
+        //var usuariosConectados = await _conexoesRepositorio.RecuperarDoUsuario(usuarioLogado.Id);
+
+        if (receita is null || (receita.UsuarioId != usuarioLogado.Id))
         {
             throw new ErrosDeValidacaoException(new List<string> { ResourceMensagensDeErro.RECEITA_NAO_ENCONTRADA });
         }

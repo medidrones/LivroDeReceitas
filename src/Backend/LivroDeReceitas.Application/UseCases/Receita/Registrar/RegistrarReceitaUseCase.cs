@@ -42,7 +42,7 @@ public class RegistrarReceitaUseCase : IRegistrarReceitaUseCase
 
     private static void Validar(RequisicaoReceitaJson requisicao)
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
         var resultado = validator.Validate(requisicao);
 
         if (!resultado.IsValid)
