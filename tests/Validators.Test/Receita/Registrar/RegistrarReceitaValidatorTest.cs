@@ -12,7 +12,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Sucesso()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
 
@@ -29,7 +29,7 @@ public class RegistrarReceitaValidatorTest
     [InlineData(100000)]
     public void Validar_Erro_Tempo_Preparo_Invalido(int tempo)
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.TempoPreparo = tempo;
@@ -43,7 +43,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_Titulo_Vazio()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.Titulo = string.Empty;
@@ -57,7 +57,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_Categoria_Invalida()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.Categoria = (Categoria)1000;
@@ -71,7 +71,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_ModoPreparo_Vazio()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.ModoPreparo = string.Empty;
@@ -85,7 +85,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_ListaIngredientes_Vazio()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.Ingredientes.Clear();
@@ -99,7 +99,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_Produto_Ingrediente_Vazio()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.Ingredientes.First().Produto = string.Empty;
@@ -113,7 +113,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_Quantidade_Ingrediente_Vazio()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.Ingredientes.First().Quantidade = string.Empty;
@@ -127,7 +127,7 @@ public class RegistrarReceitaValidatorTest
     [Fact]
     public void Validar_Erro_Ingrediente_Repetido()
     {
-        var validator = new ReceitaValidator();
+        var validator = new RegistrarReceitaValidator();
 
         var requisicao = RequisicaoReceitaBuilder.Construir();
         requisicao.Ingredientes.Add(requisicao.Ingredientes.First());

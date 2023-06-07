@@ -3,6 +3,7 @@ using LivroDeReceitas.Application.Servicos.UsuarioLogado;
 using LivroDeReceitas.Comunicacao.Requisicoes;
 using LivroDeReceitas.Comunicacao.Respostas;
 using LivroDeReceitas.Domain.Enum;
+using LivroDeReceitas.Domain.Extensions;
 using LivroDeReceitas.Domain.Repositorios.Receita;
 
 namespace LivroDeReceitas.Application.UseCases.Dashboard;
@@ -35,20 +36,21 @@ public class DashboardUseCase : IDashboardUseCase
 
     private static IList<Domain.Entidades.Receita> Filtrar(RequisicaoDashboardJson requisicao, IList<Domain.Entidades.Receita> receitas)
     {
+        if (receitas is null)
+            return new List<Domain.Entidades.Receita>();
+
         var receitasFiltradas = receitas;
 
         if (requisicao.Categoria.HasValue)
         {
-            receitasFiltradas = receitas.Where(r => r.Categoria == (Categoria)requisicao.Categoria.Value).ToList();
+            receitasFiltradas = receitas.Where(r => r.Categoria == (Domain.Enum.Categoria)requisicao.Categoria.Value).ToList();
         }
 
         if (!string.IsNullOrWhiteSpace(requisicao.TituloOuIngrediente))
         {
-            receitasFiltradas = receitas.Where(r =>
-                r.Titulo.Contains(requisicao.TituloOuIngrediente) ||
-                r.Ingredientes.Any(ingrediente => ingrediente.Produto.Contains(requisicao.TituloOuIngrediente))).ToList();
+            receitasFiltradas = receitas.Where(r => r.Titulo.CompararSemConsiderarAcentoUpperCase(requisicao.TituloOuIngrediente) || r.Ingredientes.Any(ingrediente => ingrediente.Produto.CompararSemConsiderarAcentoUpperCase(requisicao.TituloOuIngrediente))).ToList();
         }
 
-        return receitasFiltradas;
+        return receitasFiltradas.OrderBy(c => c.Titulo).ToList();
     }
 }

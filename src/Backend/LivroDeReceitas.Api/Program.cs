@@ -1,5 +1,6 @@
 using HashidsNet;
 using LivroDeReceitas.Api.Filtros;
+using LivroDeReceitas.Api.Filtros.Swagger;
 using LivroDeReceitas.Api.Middleware;
 using LivroDeReceitas.Application;
 using LivroDeReceitas.Application.Servicos.AutoMapper;
@@ -14,7 +15,10 @@ builder.Services.AddRouting(option => option.LowercaseUrls = true);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(option =>
+{
+    option.OperationFilter<HashidsOperationFilter>();
+});
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);

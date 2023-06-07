@@ -3,7 +3,7 @@ using LivroDeReceitas.Comunicacao.Requisicoes;
 using LivroDeReceitas.Domain.Extensions;
 using LivroDeReceitas.Exceptions;
 
-namespace LivroDeReceitas.Application.UseCases.Receita.Registrar;
+namespace LivroDeReceitas.Application.UseCases.Receita;
 
 public class ReceitaValidator : AbstractValidator<RequisicaoReceitaJson>
 {
