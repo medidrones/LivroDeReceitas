@@ -22,4 +22,8 @@
     <PackageReference Include="QRCoder" Version="1.4.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Receita\Atualizar\" />
+  </ItemGroup>
+
 </Project>
