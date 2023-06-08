@@ -8,7 +8,7 @@ public class ReceitaWriteOnlyRepositorioBuilder
     private static ReceitaWriteOnlyRepositorioBuilder _instance;
     private readonly Mock<IReceitaWriteOnlyRepositorio> _repositorio;
 
-    public ReceitaWriteOnlyRepositorioBuilder()
+    private ReceitaWriteOnlyRepositorioBuilder()
     {
         if (_repositorio is null)
         {
@@ -19,7 +19,6 @@ public class ReceitaWriteOnlyRepositorioBuilder
     public static ReceitaWriteOnlyRepositorioBuilder Instancia()
     {
         _instance = new ReceitaWriteOnlyRepositorioBuilder();
-        
         return _instance;
     }
 
