@@ -35,6 +35,7 @@
   <ItemGroup>
     <Folder Include="Login\FazerLogin\" />
     <Folder Include="Dashboard\" />
+    <Folder Include="Receita\Atualizar\" />
     <Folder Include="Receita\RecuperarPorId\" />
     <Folder Include="Receita\Registrar\" />
     <Folder Include="Usuario\AlterarSenha\" />
