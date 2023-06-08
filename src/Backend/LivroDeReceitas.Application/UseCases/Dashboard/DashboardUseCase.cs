@@ -2,7 +2,6 @@
 using LivroDeReceitas.Application.Servicos.UsuarioLogado;
 using LivroDeReceitas.Comunicacao.Requisicoes;
 using LivroDeReceitas.Comunicacao.Respostas;
-using LivroDeReceitas.Domain.Enum;
 using LivroDeReceitas.Domain.Extensions;
 using LivroDeReceitas.Domain.Repositorios.Receita;
 
