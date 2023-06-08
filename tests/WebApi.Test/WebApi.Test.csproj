@@ -38,6 +38,7 @@
     <Folder Include="V1\Login\" />
     <Folder Include="V1\Dashboard\" />
     <Folder Include="V1\Receita\Atualizar\" />
+    <Folder Include="V1\Receita\Deletar\" />
     <Folder Include="V1\Receita\RecuperarPorId\" />
     <Folder Include="V1\Receita\Registrar\" />
     <Folder Include="V1\Usuario\AlterarSenha\" />
