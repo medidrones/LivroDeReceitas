@@ -11,7 +11,7 @@ public class ControllerBase : IClassFixture<WebApiFactory<Program>>
 {
     private readonly HttpClient _client;
 
-    public ControllerBase(WebApplicationFactory<Program> factory)
+    public ControllerBase(WebApiFactory<Program> factory)
     {
         _client = factory.CreateClient();
     }
