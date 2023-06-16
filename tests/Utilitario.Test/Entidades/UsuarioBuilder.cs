@@ -40,6 +40,7 @@ public class UsuarioBuilder
             .RuleFor(c => c.Senha, f =>
             {
                 senha = f.Internet.Password();
+
                 return EncriptadorDeSenhaBuilder.Instancia().Criptografar(senha);
             })
             .RuleFor(c => c.Telefone, f => f.Phone.PhoneNumber("## ! ####-####").Replace("!", $"{f.Random.Int(min: 1, max: 9)}"));

@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="UseCases\Receita\Atualizar\" />
     <Folder Include="UseCases\Receita\Deletar\" />
+    <Folder Include="UseCases\Usuario\RecuperarPerfil\" />
   </ItemGroup>
 
 </Project>

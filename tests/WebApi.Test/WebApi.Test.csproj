@@ -42,6 +42,7 @@
     <Folder Include="V1\Receita\RecuperarPorId\" />
     <Folder Include="V1\Receita\Registrar\" />
     <Folder Include="V1\Usuario\AlterarSenha\" />
+    <Folder Include="V1\Usuario\RecuperarPerfil\" />
   </ItemGroup>
 
 </Project>

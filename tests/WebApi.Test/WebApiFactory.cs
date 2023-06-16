@@ -26,19 +26,24 @@ namespace WebApi.Test
                     var descritor = services.SingleOrDefault(d => d.ServiceType == typeof(LivroDeReceitasContext));
                     if (descritor is not null)
                         services.Remove(descritor);
+
                     var provider = services.AddEntityFrameworkInMemoryDatabase().BuildServiceProvider();
+
                     services.AddDbContext<LivroDeReceitasContext>(options =>
                     {
                         options.UseInMemoryDatabase("InMemoryDbForTesting");
                         options.UseInternalServiceProvider(provider);
                     });
+
                     var serviceProvider = services.BuildServiceProvider();
 
                     using var scope = serviceProvider.CreateScope();
                     var scopeService = scope.ServiceProvider;
 
                     var database = scopeService.GetRequiredService<LivroDeReceitasContext>();
+
                     database.Database.EnsureDeleted();
+
                     (_usuarioComReceita, _senhaUsarioComReceita) = ContextSeedInMemory.Seed(database);
                     (_usuarioSemReceita, _senhaUsarioSemReceita) = ContextSeedInMemory.SeedUsuarioSemReceita(database);
                     //(_usuarioComConexao, _senhaUsarioComConexao) = ContextSeedInMemory.SeedUsuarioComConexao(database);

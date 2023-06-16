@@ -14,6 +14,7 @@ public class MapperBuilder
         {
             cfg.AddProfile(new AutoMapperConfiguracao(hashids));
         });
+
         return mockMapper.CreateMapper();
     }
 }
