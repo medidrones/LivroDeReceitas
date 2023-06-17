@@ -6,6 +6,6 @@ public class EncriptadorDeSenhaBuilder
 {
     public static EncriptadorDeSenha Instancia()
     {
-        return new EncriptadorDeSenha("ABC0123");
+        return new EncriptadorDeSenha("ABCD123");
     }
 }

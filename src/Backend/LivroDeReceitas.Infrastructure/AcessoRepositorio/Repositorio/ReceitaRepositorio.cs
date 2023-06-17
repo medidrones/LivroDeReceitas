@@ -20,7 +20,7 @@ public class ReceitaRepositorio : IReceitaWriteOnlyRepositorio, IReceitaReadOnly
             .FirstOrDefaultAsync(r => r.Id == receitaId);
     }
 
-    async Task<Receita> IReceitaUpdateOnlyRepositorio.RecuperaPorId(long receitaId)
+    async Task<Receita> IReceitaUpdateOnlyRepositorio.RecuperarPorId(long receitaId)
     {
         return await _contexto.Receitas
             .Include(r => r.Ingredientes)

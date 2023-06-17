@@ -28,7 +28,7 @@ public class AtualizarReceitaUseCase : IAtualizarReceitaUseCase
     {
         var usuarioLogado = await _usuarioLogado.RecuperarUsuario();
 
-        var receita = await _repositorio.RecuperaPorId(id);
+        var receita = await _repositorio.RecuperarPorId(id);
 
         Validar(usuarioLogado, receita, requisicao);
 

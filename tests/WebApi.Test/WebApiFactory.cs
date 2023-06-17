@@ -46,7 +46,7 @@ namespace WebApi.Test
 
                     (_usuarioComReceita, _senhaUsarioComReceita) = ContextSeedInMemory.Seed(database);
                     (_usuarioSemReceita, _senhaUsarioSemReceita) = ContextSeedInMemory.SeedUsuarioSemReceita(database);
-                    //(_usuarioComConexao, _senhaUsarioComConexao) = ContextSeedInMemory.SeedUsuarioComConexao(database);
+                    (_usuarioComConexao, _senhaUsarioComConexao) = ContextSeedInMemory.SeedUsuarioComConexao(database);
                 });
         }
 

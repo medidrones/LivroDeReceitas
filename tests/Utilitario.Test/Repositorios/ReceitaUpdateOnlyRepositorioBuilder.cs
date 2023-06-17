@@ -20,12 +20,13 @@ public class ReceitaUpdateOnlyRepositorioBuilder
     public static ReceitaUpdateOnlyRepositorioBuilder Instancia()
     {
         _instance = new ReceitaUpdateOnlyRepositorioBuilder();
+
         return _instance;
     }
 
     public ReceitaUpdateOnlyRepositorioBuilder RecuperarPorId(Receita receita)
     {
-        _repositorio.Setup(r => r.RecuperaPorId(receita.Id)).ReturnsAsync(receita);
+        _repositorio.Setup(r => r.RecuperarPorId(receita.Id)).ReturnsAsync(receita);
 
         return this;
     }

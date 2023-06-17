@@ -31,14 +31,13 @@ public class UsuarioRepositorio : IUsuarioWriteOnlyRepositorio, IUsuarioReadOnly
 
     public async Task<Usuario> RecuperarPorEmailSenha(string email, string senha)
     {
-        return await _contexto.Usuarios
+        return await _contexto.Usuarios.AsNoTracking()
             .FirstOrDefaultAsync(c => c.Email.Equals(email) && c.Senha.Equals(senha));
     }
 
     public async Task<Usuario> RecuperarPorId(long id)
     {
-        return await _contexto.Usuarios
-            .FirstOrDefaultAsync(c => c.Id ==id);
+        return await _contexto.Usuarios.FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public void Update(Usuario usuario)

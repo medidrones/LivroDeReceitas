@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
 using LivroDeReceitas.Comunicacao.Requisicoes;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Xunit;
 

@@ -40,5 +40,8 @@ public class AutoMapperConfiguracao : Profile
             .ForMember(destino => destino.QuantidadeIngredientes, config => config.MapFrom(origem => origem.Ingredientes.Count));
 
         CreateMap<Usuario, RespostaPerfilUsuarioJson>();
+
+        CreateMap<Usuario, RespostaUsuarioConectadoJson>()
+            .ForMember(destino => destino.Id, config => config.MapFrom(origem => _hashids.EncodeLong(origem.Id)));
     }
 }

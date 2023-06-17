@@ -2,6 +2,6 @@
 
 public interface IReceitaUpdateOnlyRepositorio
 {
-    Task<Entidades.Receita> RecuperaPorId(long receitaId);
+    Task<Entidades.Receita> RecuperarPorId(long receitaId);
     void Update(Entidades.Receita receita);
 }

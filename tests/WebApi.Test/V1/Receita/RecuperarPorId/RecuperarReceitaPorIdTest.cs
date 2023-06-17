@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
+using LivroDeReceitas.Exceptions;
 using System.Net;
 using System.Text.Json;
+using Utilitario.Test.Hashids;
 using Xunit;
 
 namespace WebApi.Test.V1.Receita.RecuperarPorId;
@@ -41,7 +43,7 @@ public class RecuperarReceitaPorIdTest : ControllerBase
         responseData.RootElement.GetProperty("tempoPreparo").GetUInt32().Should().BeGreaterThan(0).And.BeLessThanOrEqualTo(1000);
     }
 
-    /*[Theory]
+    [Theory]
     [InlineData("pt")]
     [InlineData("en")]
     public async Task Validar_Erro_Receita_Inexistente(string cultura)
@@ -62,5 +64,5 @@ public class RecuperarReceitaPorIdTest : ControllerBase
 
         var mensagemEsperada = ResourceMensagensDeErro.ResourceManager.GetString("RECEITA_NAO_ENCONTRADA", new System.Globalization.CultureInfo(cultura));
         erros.Should().ContainSingle().And.Contain(x => x.GetString().Equals(mensagemEsperada));
-    }*/
+    }
 }

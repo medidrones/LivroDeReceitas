@@ -25,6 +25,7 @@ public class ConexaoBuilder
             .RuleFor(c => c.Senha, f =>
             {
                 var senha = f.Internet.Password();
+
                 return EncriptadorDeSenhaBuilder.Instancia().Criptografar(senha);
             })
             .RuleFor(c => c.Telefone, f => f.Phone.PhoneNumber("## ! ####-####").Replace("!", $"{f.Random.Int(min: 1, max: 9)}"));

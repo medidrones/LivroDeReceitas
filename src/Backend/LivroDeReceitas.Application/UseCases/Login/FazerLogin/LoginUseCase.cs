@@ -23,6 +23,7 @@ public class LoginUseCase : ILoginUseCase
     public async Task<RespostaLoginJson> Executar(RequisicaoLoginJson request)
     {
         var senhaCriptografada = _encriptadorDeSenha.Criptografar(request.Senha);
+
         var usuario = await _usuarioReadOnlyRepositorio.RecuperarPorEmailSenha(request.Email, senhaCriptografada);
 
         if (usuario is null)

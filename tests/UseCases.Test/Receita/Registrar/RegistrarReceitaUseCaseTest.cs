@@ -19,8 +19,18 @@ public class RegistrarReceitaUseCaseTest
         (var usuario, var _) = UsuarioBuilder.Construir();
 
         var useCase = CriarUseCase(usuario);
-        var requicao = RequisicaoReceitaBuilder.Construir();
-        var resposta = await useCase.Executar(requicao);
+
+        var requisicao = RequisicaoReceitaBuilder.Construir();
+
+        var resposta = await useCase.Executar(requisicao);
+
+        resposta.Should().NotBeNull();
+
+        resposta.Id.Should().NotBeNullOrWhiteSpace();
+        resposta.Titulo.Should().Be(requisicao.Titulo);
+        resposta.Categoria.Should().Be(requisicao.Categoria);
+        resposta.ModoPreparo.Should().Be(requisicao.ModoPreparo);
+        resposta.TempoPreparo.Should().Be(requisicao.TempoPreparo);
     }
 
     [Fact]
@@ -36,9 +46,7 @@ public class RegistrarReceitaUseCaseTest
         Func<Task> acao = async () => { await useCase.Executar(requisicao); };
 
         await acao.Should().ThrowAsync<ErrosDeValidacaoException>()
-            .Where(exception => exception.MensagensDeErro.Count == 1 &&
-                                exception.MensagensDeErro.Contains(
-                                    ResourceMensagensDeErro.RECEITA_MINIMO_UM_INGREDIENTE));
+            .Where(exception => exception.MensagensDeErro.Count == 1 && exception.MensagensDeErro.Contains(ResourceMensagensDeErro.RECEITA_MINIMO_UM_INGREDIENTE));
     }
 
     private static RegistrarReceitaUseCase CriarUseCase(LivroDeReceitas.Domain.Entidades.Usuario usuario)
