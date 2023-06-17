@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LivroDeReceitas.Application.Servicos.UsuarioLogado;
 using LivroDeReceitas.Comunicacao.Respostas;
+using LivroDeReceitas.Domain.Repositorios.Conexao;
 using LivroDeReceitas.Domain.Repositorios.Receita;
 using LivroDeReceitas.Exceptions;
 using LivroDeReceitas.Exceptions.ExceptionsBase;
@@ -9,15 +10,17 @@ namespace LivroDeReceitas.Application.UseCases.Receita.RecuperarPorId;
 
 public class RecuperarReceitaPorIdUseCase : IRecuperarReceitaPorIdUseCase
 {
+    private readonly IConexaoReadOnlyRepositorio _conexoesRepositorio;
     private readonly IReceitaReadOnlyRepositorio _repositorio;
     private readonly IUsuarioLogado _usuarioLogado;
     private readonly IMapper _mapper;
 
-    public RecuperarReceitaPorIdUseCase(IReceitaReadOnlyRepositorio repositorio, IUsuarioLogado usuarioLogado, IMapper mapper)
+    public RecuperarReceitaPorIdUseCase(IReceitaReadOnlyRepositorio repositorio, IUsuarioLogado usuarioLogado, IMapper mapper, IConexaoReadOnlyRepositorio conexoesRepositorio)
     {
         _repositorio = repositorio;
         _usuarioLogado = usuarioLogado;
         _mapper = mapper;
+        _conexoesRepositorio = conexoesRepositorio;
     }
 
     public async Task<RespostaReceitaJson> Executar(long id)
@@ -33,9 +36,9 @@ public class RecuperarReceitaPorIdUseCase : IRecuperarReceitaPorIdUseCase
 
     public async Task Validar(Domain.Entidades.Usuario usuarioLogado, Domain.Entidades.Receita receita)
     {
-        //var usuariosConectados = await _conexoesRepositorio.RecuperarDoUsuario(usuarioLogado.Id);
+        var usuariosConectados = await _conexoesRepositorio.RecuperarDoUsuario(usuarioLogado.Id);
 
-        if (receita is null || (receita.UsuarioId != usuarioLogado.Id))
+        if (receita is null || (receita.UsuarioId != usuarioLogado.Id && !usuariosConectados.Any(c => c.Id == receita.UsuarioId)))
         {
             throw new ErrosDeValidacaoException(new List<string> { ResourceMensagensDeErro.RECEITA_NAO_ENCONTRADA });
         }

@@ -21,6 +21,8 @@
   <ItemGroup>
     <Folder Include="Entidades\" />
     <Folder Include="Hashids\" />
+    <Folder Include="Image\" />
+    <Folder Include="Respostas\" />
     <Folder Include="UsuarioLogado\" />
   </ItemGroup>
 

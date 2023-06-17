@@ -21,20 +21,19 @@ public class AlterarSenhaUseCaseTest
 
         var useCase = CriarUseCase(usuario);
 
+        var requisicao = RequisicaoAlterarSenhaUsuarioBuilder.Construir();
+        requisicao.SenhaAtual = senha;
+
         Func<Task> acao = async () =>
         {
-            await useCase.Executar(new RequisicaoAlterarSenhaJson()
-            {
-                SenhaAtual = senha,
-                NovaSenha = "@NovaSenha1234"
-            });
+            await useCase.Executar(requisicao);
         };
 
         await acao.Should().NotThrowAsync();
     }
 
     [Fact]
-    public async Task Validar_Erro_NovaSenha_Em_Branco()
+    public async Task Validar_Erro_NovaSenhaEmBranco()
     {
         (var usuario, var senha) = UsuarioBuilder.Construir();
 

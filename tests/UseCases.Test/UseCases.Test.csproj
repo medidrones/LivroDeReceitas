@@ -32,15 +32,4 @@
     <ProjectReference Include="..\Utilitario.Test\Utilitario.Test.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Login\FazerLogin\" />
-    <Folder Include="Dashboard\" />
-    <Folder Include="Receita\Atualizar\" />
-    <Folder Include="Receita\Deletar\" />
-    <Folder Include="Receita\RecuperarPorId\" />
-    <Folder Include="Receita\Registrar\" />
-    <Folder Include="Usuario\AlterarSenha\" />
-    <Folder Include="Usuario\RecuperarPerfil\" />
-  </ItemGroup>
-
 </Project>

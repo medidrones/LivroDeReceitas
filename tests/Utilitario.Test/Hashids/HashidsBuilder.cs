@@ -14,6 +14,7 @@ public class HashidsBuilder
     public static HashidsBuilder Instance()
     {
         _instance = new HashidsBuilder();
+
         return _instance;
     }
 

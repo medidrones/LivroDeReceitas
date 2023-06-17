@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
 
-namespace LivroDeReceitas.Api.Filtros;
+namespace LivroDeReceitas.Api.Filtros.UsuarioLogado;
 
 public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizationFilter
 {
@@ -27,6 +27,7 @@ public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizati
         {
             var token = TokenNaRequisicao(context);
             var emailUsuario = _tokenController.RecuperarEmail(token);
+
             var usuario = await _repositorio.RecuperarPorEmail(emailUsuario);
 
             if (usuario is null)
@@ -42,7 +43,6 @@ public class UsuarioAutenticadoAttribute : AuthorizeAttribute, IAsyncAuthorizati
         {
             UsuarioSemPermissao(context);
         }
-        
     }
 
     private static string TokenNaRequisicao(AuthorizationFilterContext context)

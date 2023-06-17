@@ -35,14 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="V1\Login\" />
-    <Folder Include="V1\Dashboard\" />
-    <Folder Include="V1\Receita\Atualizar\" />
-    <Folder Include="V1\Receita\Deletar\" />
-    <Folder Include="V1\Receita\RecuperarPorId\" />
-    <Folder Include="V1\Receita\Registrar\" />
-    <Folder Include="V1\Usuario\AlterarSenha\" />
-    <Folder Include="V1\Usuario\RecuperarPerfil\" />
+    <Folder Include="V1\Conexao\Builder\" />
+    <Folder Include="V1\ErroDesconhecido\" />
   </ItemGroup>
 
 </Project>

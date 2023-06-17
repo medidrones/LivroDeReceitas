@@ -1,13 +1,16 @@
 using HashidsNet;
 using LivroDeReceitas.Api.Filtros;
 using LivroDeReceitas.Api.Filtros.Swagger;
+using LivroDeReceitas.Api.Filtros.UsuarioLogado;
 using LivroDeReceitas.Api.Middleware;
+using LivroDeReceitas.Api.WebSockets;
 using LivroDeReceitas.Application;
 using LivroDeReceitas.Application.Servicos.AutoMapper;
 using LivroDeReceitas.Domain.Extensions;
 using LivroDeReceitas.Infrastructure;
 using LivroDeReceitas.Infrastructure.AcessoRepositorio;
 using LivroDeReceitas.Infrastructure.Migrations;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,7 @@ builder.Services.AddRouting(option => option.LowercaseUrls = true);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(option =>
 {
     option.OperationFilter<HashidsOperationFilter>();
@@ -45,7 +49,6 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
-
 builder.Services.AddMvc(options => options.Filters.Add(typeof(FiltroDasExceptions)));
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
@@ -53,7 +56,15 @@ builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
     cfg.AddProfile(new AutoMapperConfiguracao(provider.GetService<IHashids>()));
 }).CreateMapper());
 
+builder.Services.AddScoped<IAuthorizationHandler, UsuarioLogadoHandler>();
+
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("UsuarioLogado", policy => policy.Requirements.Add(new UsuarioLogadoRequirement()));
+});
+
 builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -64,14 +75,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 AtualizarBaseDeDados();
 
 app.UseMiddleware<CultureMiddleware>();
+app.MapHub<AdicionarConexao>("/addConexao");
 
 app.Run();
 

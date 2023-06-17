@@ -30,7 +30,7 @@ public class ContextSeedInMemory
         return (usuario, senha);
     }
 
-    /*public static (Usuario usuario, string senha) SeedUsuarioComConexao(LivroDeReceitasContext context)
+    public static (Usuario usuario, string senha) SeedUsuarioComConexao(LivroDeReceitasContext context)
     {
         (var usuario, string senha) = UsuarioBuilder.ConstruirUsuarioComConexao();
 
@@ -53,5 +53,5 @@ public class ContextSeedInMemory
         context.SaveChanges();
 
         return (usuario, senha);
-    }*/
+    }
 }

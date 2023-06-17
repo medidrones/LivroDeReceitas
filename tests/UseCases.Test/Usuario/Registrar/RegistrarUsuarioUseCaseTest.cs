@@ -16,11 +16,11 @@ public class RegistrarUsuarioUseCaseTest
     [Fact]
     public async Task Validar_Sucesso()
     {
-        var requisao = RequisicaoRegistrarUsuarioBuilder.Construir();
+        var requisicao = RequisicaoRegistrarUsuarioBuilder.Construir();
 
         var useCase = CriarUseCase();
 
-        var resposta = await useCase.Executar(requisao);
+        var resposta = await useCase.Executar(requisicao);
 
         resposta.Should().NotBeNull();
         resposta.Token.Should().NotBeNullOrWhiteSpace();
@@ -29,11 +29,11 @@ public class RegistrarUsuarioUseCaseTest
     [Fact]
     public async Task Validar_Erro_Email_Ja_Registrado()
     {
-        var requisao = RequisicaoRegistrarUsuarioBuilder.Construir();
+        var requisicao = RequisicaoRegistrarUsuarioBuilder.Construir();
 
-        var useCase = CriarUseCase(requisao.Email);
+        var useCase = CriarUseCase(requisicao.Email);
 
-        Func<Task> acao = async () => { await useCase.Executar(requisao); };
+        Func<Task> acao = async () => { await useCase.Executar(requisicao); };
 
         await acao.Should().ThrowAsync<ErrosDeValidacaoException>()
             .Where(exception => exception.MensagensDeErro.Count == 1 && exception.MensagensDeErro.Contains(ResourceMensagensDeErro.EMAIL_JA_REGISTRADO));
@@ -42,12 +42,12 @@ public class RegistrarUsuarioUseCaseTest
     [Fact]
     public async Task Validar_Erro_Email_Vazio()
     {
-        var requisao = RequisicaoRegistrarUsuarioBuilder.Construir();
-        requisao.Email = string.Empty;
+        var requisicao = RequisicaoRegistrarUsuarioBuilder.Construir();
+        requisicao.Email = string.Empty;
 
         var useCase = CriarUseCase();
 
-        Func<Task> acao = async () => { await useCase.Executar(requisao); };
+        Func<Task> acao = async () => { await useCase.Executar(requisicao); };
 
         await acao.Should().ThrowAsync<ErrosDeValidacaoException>()
             .Where(exception => exception.MensagensDeErro.Count == 1 && exception.MensagensDeErro.Contains(ResourceMensagensDeErro.EMAIL_USUARIO_EM_BRANCO));

@@ -19,6 +19,7 @@ public class ReceitaWriteOnlyRepositorioBuilder
     public static ReceitaWriteOnlyRepositorioBuilder Instancia()
     {
         _instance = new ReceitaWriteOnlyRepositorioBuilder();
+
         return _instance;
     }
 
