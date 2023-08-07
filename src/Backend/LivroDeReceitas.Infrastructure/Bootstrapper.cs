@@ -48,7 +48,7 @@ public static class Bootstrapper
 
     private static void AddRepositorios(IServiceCollection services)
     {
-        services
+        services.AddScoped<IUsuarioWriteOnlyRepositorio, UsuarioRepositorio>()
             .AddScoped<IUsuarioReadOnlyRepositorio, UsuarioRepositorio>()
             .AddScoped<IUsuarioUpdateOnlyRepositorio, UsuarioRepositorio>()
             .AddScoped<IReceitaWriteOnlyRepositorio, ReceitaRepositorio>()

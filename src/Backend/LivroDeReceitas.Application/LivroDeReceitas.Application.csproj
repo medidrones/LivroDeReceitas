@@ -22,16 +22,4 @@
     <PackageReference Include="QRCoder" Version="1.4.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Conexao\GerarQRCode\" />
-    <Folder Include="UseCases\Conexao\AceitarConexao\" />
-    <Folder Include="UseCases\Conexao\Remover\" />
-    <Folder Include="UseCases\Conexao\RecusarConexao\" />
-    <Folder Include="UseCases\Conexao\Recuperar\" />
-    <Folder Include="UseCases\Conexao\QRCodeLido\" />
-    <Folder Include="UseCases\Receita\Atualizar\" />
-    <Folder Include="UseCases\Receita\Deletar\" />
-    <Folder Include="UseCases\Usuario\RecuperarPerfil\" />
-  </ItemGroup>
-
 </Project>

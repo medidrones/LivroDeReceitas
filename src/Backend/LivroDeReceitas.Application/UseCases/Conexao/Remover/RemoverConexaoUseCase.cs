@@ -12,26 +12,17 @@ public class RemoverConexaoUseCase : IRemoverConexaoUseCase
     private readonly IConexaoWriteOnlyRepositorio _repositorioWriteOnly;
     private readonly IUsuarioLogado _usuarioLogado;
     private readonly IUnidadeDeTrabalho _unidadeTrabalho;
-    private IUsuarioLogado usuarioLogado;
-    private IConexaoReadOnlyRepositorio repositorioReadOnly;
-    private IConexaoWriteOnlyRepositorio repositorioWriteOnly;
-    private IUnidadeDeTrabalho unidadeTrabalho;
 
-    public RemoverConexaoUseCase(IConexaoReadOnlyRepositorio repositorioReadOnly, IConexaoWriteOnlyRepositorio repositorioWriteOnly, 
-        IUsuarioLogado usuarioLogado, IUnidadeDeTrabalho unidadeTrabalho)
+    public RemoverConexaoUseCase(
+        IUsuarioLogado usuarioLogado,
+        IConexaoReadOnlyRepositorio repositorioReadOnly,
+        IConexaoWriteOnlyRepositorio repositorioWriteOnly,
+        IUnidadeDeTrabalho unidadeTrabalho)
     {
+        _usuarioLogado = usuarioLogado;
         _repositorioReadOnly = repositorioReadOnly;
         _repositorioWriteOnly = repositorioWriteOnly;
-        _usuarioLogado = usuarioLogado;
         _unidadeTrabalho = unidadeTrabalho;
-    }
-
-    public RemoverConexaoUseCase(IUsuarioLogado usuarioLogado, IConexaoReadOnlyRepositorio repositorioReadOnly, IConexaoWriteOnlyRepositorio repositorioWriteOnly, IUnidadeDeTrabalho unidadeTrabalho)
-    {
-        this.usuarioLogado = usuarioLogado;
-        this.repositorioReadOnly = repositorioReadOnly;
-        this.repositorioWriteOnly = repositorioWriteOnly;
-        this.unidadeTrabalho = unidadeTrabalho;
     }
 
     public async Task Executar(long idUsuarioConectadoParaRemover)

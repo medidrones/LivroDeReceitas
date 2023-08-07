@@ -1,4 +1,4 @@
-﻿using AspNetCore.Hashids.Mvc;
+﻿using LivroDeReceitas.Api.Binder;
 using LivroDeReceitas.Api.Filtros.UsuarioLogado;
 using LivroDeReceitas.Application.UseCases.Conexao.Recuperar;
 using LivroDeReceitas.Application.UseCases.Conexao.Remover;

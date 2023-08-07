@@ -37,6 +37,7 @@ namespace WebApi.Test
 
                     var serviceProvider = services.BuildServiceProvider();
 
+
                     using var scope = serviceProvider.CreateScope();
                     var scopeService = scope.ServiceProvider;
 

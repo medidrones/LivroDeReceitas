@@ -11,6 +11,8 @@ using LivroDeReceitas.Infrastructure;
 using LivroDeReceitas.Infrastructure.AcessoRepositorio;
 using LivroDeReceitas.Infrastructure.Migrations;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,13 +44,14 @@ builder.Services.AddSwaggerGen(option =>
                     Id = "Bearer"
                 }
             },
-            System.Array.Empty<string>()
+            Array.Empty<string>()
         }
     });
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
+
 builder.Services.AddMvc(options => options.Filters.Add(typeof(FiltroDasExceptions)));
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
@@ -64,9 +67,20 @@ builder.Services.AddAuthorization(option =>
 });
 
 builder.Services.AddScoped<UsuarioAutenticadoAttribute>();
+builder.Services.AddHealthChecks().AddDbContextCheck<LivroDeReceitasContext>();
 builder.Services.AddSignalR();
 
 var app = builder.Build();
+
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    AllowCachingResponses = false,
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    }
+});
 
 if (app.Environment.IsDevelopment())
 {

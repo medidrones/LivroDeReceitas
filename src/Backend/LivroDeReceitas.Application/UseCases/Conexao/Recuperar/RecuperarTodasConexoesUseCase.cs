@@ -12,26 +12,17 @@ public class RecuperarTodasConexoesUseCase : IRecuperarTodasConexoesUseCase
     private readonly IReceitaReadOnlyRepositorio _repositorioReceita;
     private readonly IConexaoReadOnlyRepositorio _repositorio;
     private readonly IMapper _mapper;
-    private IUsuarioLogado usuarioLogado;
-    private IConexaoReadOnlyRepositorio repositorioConexao;
-    private IMapper automapper;
-    private IReceitaReadOnlyRepositorio repositorioReceita;
 
-    public RecuperarTodasConexoesUseCase(IUsuarioLogado usuarioLogado, IReceitaReadOnlyRepositorio repositorioReceita, 
-        IConexaoReadOnlyRepositorio repositorio, IMapper mapper)
+    public RecuperarTodasConexoesUseCase(
+        IUsuarioLogado usuarioLogado,
+        IConexaoReadOnlyRepositorio repositorio,
+        IMapper mapper,
+        IReceitaReadOnlyRepositorio repositorioReceita)
     {
         _usuarioLogado = usuarioLogado;
-        _repositorioReceita = repositorioReceita;
         _repositorio = repositorio;
         _mapper = mapper;
-    }
-
-    public RecuperarTodasConexoesUseCase(IUsuarioLogado usuarioLogado, IConexaoReadOnlyRepositorio repositorioConexao, IMapper automapper, IReceitaReadOnlyRepositorio repositorioReceita)
-    {
-        this.usuarioLogado = usuarioLogado;
-        this.repositorioConexao = repositorioConexao;
-        this.automapper = automapper;
-        this.repositorioReceita = repositorioReceita;
+        _repositorioReceita = repositorioReceita;
     }
 
     public async Task<RespostaConexoesDoUsuarioJson> Executar()
@@ -43,6 +34,7 @@ public class RecuperarTodasConexoesUseCase : IRecuperarTodasConexoesUseCase
         var tarefas = conexoes.Select(async usuario =>
         {
             var quantidadeReceitas = await _repositorioReceita.QuantidadeReceitas(usuario.Id);
+
             var usuarioJson = _mapper.Map<RespostaUsuarioConectadoJson>(usuario);
             usuarioJson.QuantidadeReceitas = quantidadeReceitas;
 
