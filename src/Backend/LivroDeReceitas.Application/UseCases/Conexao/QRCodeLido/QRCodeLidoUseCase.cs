@@ -14,27 +14,19 @@ public class QRCodeLidoUseCase : IQRCodeLidoUseCase
     private readonly IConexaoReadOnlyRepositorio _repositorioConexao;
     private readonly ICodigoReadOnlyRepositorio _repositorio;
     private readonly IUsuarioLogado _usuarioLogado;
-    private ICodigoReadOnlyRepositorio repositorioCodigo;
-    private IUsuarioLogado usuarioLogado;
-    private IConexaoReadOnlyRepositorio repositorioConexao;
-    private Hashids hashids;
 
-    public QRCodeLidoUseCase(IHashids hashids, IConexaoReadOnlyRepositorio repositorioConexao, ICodigoReadOnlyRepositorio repositorio, 
-        IUsuarioLogado usuarioLogado)
+    public QRCodeLidoUseCase(
+        ICodigoReadOnlyRepositorio repositorio,
+        IUsuarioLogado usuarioLogado,
+        IConexaoReadOnlyRepositorio repositorioConexao,
+        IHashids hashids)
     {
-        _hashids = hashids;
-        _repositorioConexao = repositorioConexao;
         _repositorio = repositorio;
         _usuarioLogado = usuarioLogado;
+        _repositorioConexao = repositorioConexao;
+        _hashids = hashids;
     }
 
-    public QRCodeLidoUseCase(ICodigoReadOnlyRepositorio repositorioCodigo, IUsuarioLogado usuarioLogado, IConexaoReadOnlyRepositorio repositorioConexao, Hashids hashids)
-    {
-        this.repositorioCodigo = repositorioCodigo;
-        this.usuarioLogado = usuarioLogado;
-        this.repositorioConexao = repositorioConexao;
-        this.hashids = hashids;
-    }
 
     public async Task<(RespostaUsuarioConexaoJson usuarioParaSeConectar, string idUsuarioQueGerouQRCode)> Executar(string codigoConexao)
     {
@@ -48,7 +40,7 @@ public class QRCodeLidoUseCase : IQRCodeLidoUseCase
             Id = _hashids.EncodeLong(usuarioLogado.Id),
             Nome = usuarioLogado.Nome
         };
-        
+
         return (usuarioParaSeConectar, _hashids.EncodeLong(codigo.UsuarioId));
     }
 

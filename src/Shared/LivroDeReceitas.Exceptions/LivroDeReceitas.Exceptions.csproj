@@ -15,9 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+	<EmbeddedResource Update="ResourceMensagensDeErro.en.resx">
+	  <Generator>PublicResXFileCodeGenerator</Generator>
+	</EmbeddedResource>
     <EmbeddedResource Update="ResourceMensagensDeErro.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceMensagensDeErro.Designer.cs</LastGenOutput>
+	  <Generator>PublicResXFileCodeGenerator</Generator>
+	  <LastGenOutput>ResourceMensagensDeErro.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

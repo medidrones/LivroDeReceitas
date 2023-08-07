@@ -36,10 +36,10 @@ public class QRCodeLidoTest
 
         mockClientProxy.Verify(
             clientProxy => clientProxy.SendCoreAsync("ResultadoQRCodeLido",
-            It.Is<object[]>(resposta => resposta != null
-                && resposta.Length == 1
-                && (resposta.First() as RespostaUsuarioConexaoJson).Nome.Equals(usuarioParaSeConectar.Nome)
-                && (resposta.First() as RespostaUsuarioConexaoJson).Id.Equals(usuarioParaSeConectar.Id)), default), Times.Once);
+                It.Is<object[]>(resposta => resposta != null
+                                            && resposta.Length == 1
+                                            && (resposta.First() as RespostaUsuarioConexaoJson).Nome.Equals(usuarioParaSeConectar.Nome)
+                                            && (resposta.First() as RespostaUsuarioConexaoJson).Id.Equals(usuarioParaSeConectar.Id)), default), Times.Once);
     }
 
     [Fact]
