@@ -3,10 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,11 +29,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Backend\LivroDeReceitas.Application\LivroDeReceitas.Application.csproj" />
     <ProjectReference Include="..\Utilitario.Test\Utilitario.Test.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Login\FazerLogin\" />
-    <Folder Include="Usuario\AlterarSenha\" />
   </ItemGroup>
 
 </Project>

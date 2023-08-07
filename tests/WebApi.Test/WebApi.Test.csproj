@@ -6,7 +6,6 @@
     <Nullable>disable</Nullable>
 
     <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +32,5 @@
     <ProjectReference Include="..\..\src\Backend\LivroDeReceitas.Api\LivroDeReceitas.Api.csproj" />
     <ProjectReference Include="..\Utilitario.Test\Utilitario.Test.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="V1\Login\" />
-    <Folder Include="V1\Usuario\AlterarSenha\" />
-  </ItemGroup>
-
+ 
 </Project>

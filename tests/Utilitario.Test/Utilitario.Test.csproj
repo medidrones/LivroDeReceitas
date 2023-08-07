@@ -18,9 +18,4 @@
     <ProjectReference Include="..\..\src\Shared\LivroDeReceitas.Comunicacao\LivroDeReceitas.Comunicacao.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entidades\" />
-    <Folder Include="UsuarioLogado\" />
-  </ItemGroup>
-
 </Project>

@@ -27,6 +27,7 @@ public class AlterarSenhaUseCase : IAlterarSenhaUseCase
     public async Task Executar(RequisicaoAlterarSenhaJson requisicao)
     {
         var usuarioLogado = await _usuarioLogado.RecuperarUsuario();
+
         var usuario = await _repositorio.RecuperarPorId(usuarioLogado.Id);
 
         Validar(requisicao, usuario);
@@ -42,6 +43,7 @@ public class AlterarSenhaUseCase : IAlterarSenhaUseCase
     {
         var validator = new AlterarSenhaValidator();
         var resultado = validator.Validate(requisicao);
+
         var senhaAtualCriptografada = _encriptadorDeSenha.Criptografar(requisicao.SenhaAtual);
 
         if (!usuario.Senha.Equals(senhaAtualCriptografada))

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LivroDeReceitas.Application.Servicos.AutoMapper;
+using Utilitario.Test.Hashids;
 
 namespace Utilitario.Test.Mapper;
 
@@ -7,11 +8,13 @@ public class MapperBuilder
 {
     public static IMapper Instancia()
     {
-        var configuracao = new MapperConfiguration(cfg =>
+        var hashids = HashidsBuilder.Instance().Build();
+
+        var mockMapper = new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<AutoMapperConfiguracao>();
+            cfg.AddProfile(new AutoMapperConfiguracao(hashids));
         });
 
-        return configuracao.CreateMapper();
+        return mockMapper.CreateMapper();
     }
 }

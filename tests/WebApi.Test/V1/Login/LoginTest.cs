@@ -10,6 +10,7 @@ namespace WebApi.Test.V1.Login;
 public class LoginTest : ControllerBase
 {
     private const string METODO = "login";
+
     private LivroDeReceitas.Domain.Entidades.Usuario _usuario;
     private string _senha;
 
@@ -40,8 +41,10 @@ public class LoginTest : ControllerBase
         responseData.RootElement.GetProperty("token").GetString().Should().NotBeNullOrWhiteSpace();
     }
 
-    [Fact]
-    public async Task Validar_Erro_Senha_Invalido()
+    [Theory]
+    [InlineData("pt")]
+    [InlineData("en")]
+    public async Task Validar_Erro_Senha_Invalido(string cultura)
     {
         var requisicao = new RequisicaoLoginJson
         {
@@ -49,7 +52,7 @@ public class LoginTest : ControllerBase
             Senha = "senhaInvalida"
         };
 
-        var resposta = await PostRequest(METODO, requisicao);
+        var resposta = await PostRequest(METODO, requisicao, cultura: cultura);
 
         resposta.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 
@@ -57,12 +60,16 @@ public class LoginTest : ControllerBase
 
         var responseData = await JsonDocument.ParseAsync(responstaBody);
 
-        var erros = responseData.RootElement.GetProperty("mensagens").Deserialize<List<string>>();
-        erros.Should().ContainSingle().And.Contain(ResourceMensagensDeErro.LOGIN_INVALIDO);
+        var erros = responseData.RootElement.GetProperty("mensagens").EnumerateArray();
+
+        var mensagemEsperada = ResourceMensagensDeErro.ResourceManager.GetString("LOGIN_INVALIDO", new System.Globalization.CultureInfo(cultura));
+        erros.Should().ContainSingle().And.Contain(x => x.GetString().Equals(mensagemEsperada));
     }
 
-    [Fact]
-    public async Task Validar_Erro_Email_Invalido()
+    [Theory]
+    [InlineData("pt")]
+    [InlineData("en")]
+    public async Task Validar_Erro_Email_Invalido(string cultura)
     {
         var requisicao = new RequisicaoLoginJson
         {
@@ -70,7 +77,7 @@ public class LoginTest : ControllerBase
             Senha = _senha
         };
 
-        var resposta = await PostRequest(METODO, requisicao);
+        var resposta = await PostRequest(METODO, requisicao, cultura: cultura);
 
         resposta.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 
@@ -78,12 +85,16 @@ public class LoginTest : ControllerBase
 
         var responseData = await JsonDocument.ParseAsync(responstaBody);
 
-        var erros = responseData.RootElement.GetProperty("mensagens").Deserialize<List<string>>();
-        erros.Should().ContainSingle().And.Contain(ResourceMensagensDeErro.LOGIN_INVALIDO);
+        var erros = responseData.RootElement.GetProperty("mensagens").EnumerateArray();
+
+        var mensagemEsperada = ResourceMensagensDeErro.ResourceManager.GetString("LOGIN_INVALIDO", new System.Globalization.CultureInfo(cultura));
+        erros.Should().ContainSingle().And.Contain(x => x.GetString().Equals(mensagemEsperada));
     }
 
-    [Fact]
-    public async Task Validar_Erro_Email_Senha_Invalido()
+    [Theory]
+    [InlineData("pt")]
+    [InlineData("en")]
+    public async Task Validar_Erro_Email_Senha_Invalido(string cultura)
     {
         var requisicao = new RequisicaoLoginJson
         {
@@ -91,7 +102,7 @@ public class LoginTest : ControllerBase
             Senha = "senhaInvalida"
         };
 
-        var resposta = await PostRequest(METODO, requisicao);
+        var resposta = await PostRequest(METODO, requisicao, cultura: cultura);
 
         resposta.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 
@@ -99,7 +110,9 @@ public class LoginTest : ControllerBase
 
         var responseData = await JsonDocument.ParseAsync(responstaBody);
 
-        var erros = responseData.RootElement.GetProperty("mensagens").Deserialize<List<string>>();
-        erros.Should().ContainSingle().And.Contain(ResourceMensagensDeErro.LOGIN_INVALIDO);
+        var erros = responseData.RootElement.GetProperty("mensagens").EnumerateArray();
+
+        var mensagemEsperada = ResourceMensagensDeErro.ResourceManager.GetString("LOGIN_INVALIDO", new System.Globalization.CultureInfo(cultura));
+        erros.Should().ContainSingle().And.Contain(x => x.GetString().Equals(mensagemEsperada));
     }
 }
